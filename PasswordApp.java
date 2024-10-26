@@ -4,6 +4,8 @@ import java.util.Base64;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 // Creating the Password class with methods for encoding, decoding, and creating passwords
 public class PasswordApp extends JFrame {
@@ -66,12 +68,18 @@ public class PasswordApp extends JFrame {
             String userPassword = JOptionPane.showInputDialog(this, "Enter a Password to Encrypt:");
             if (userPassword != null && !userPassword.isEmpty()) {
                 this.password = encodeToBase64(userPassword);
-                JOptionPane.showMessageDialog(this, "Your encrypted password is: " + this.password, "Password Encrypted", JOptionPane.INFORMATION_MESSAGE);
+                JTextArea toCopy = new JTextArea(10, 10);
+                toCopy.setText(password);
+
+                JOptionPane.showMessageDialog(this, new JScrollPane(toCopy));
+               // JOptionPane.showMessageDialog(this, "Your encrypted password is: " + this.password, "Password Encrypted", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "Password cannot be empty!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
+
+
 
     // Main method to start the application
     public static void main(String[] args) {
